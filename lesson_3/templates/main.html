@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Number</th>
+        <th>Type</th>
+        <th>Link</th>
+    </tr>
+    <tr>
+        <th>1</th>
+        <th>Text</th>
+        <th><a href="{% url 'text' %}" type="button">Text Link</a></th>
+    </tr>
+    <tr>
+        <th>2</th>
+        <th>File</th>
+        <th><a href="{% url 'file' %}" type="button">File Link</a></th>
+    </tr>
+    <tr>
+        <th>3</th>
+        <th>Redirect</th>
+        <th><a href="{% url 'redirect' %}" type="button">Redirect Link</a></th>
+    </tr>
+    <tr>
+        <th>4</th>
+        <th>Not allowed</th>
+        <th><a href="{% url 'not_allowed' %}" type="button">Not allowed Link</a></th>
+    </tr>
+    <tr>
+        <th>5</th>
+        <th>JSON</th>
+        <th><a href="{% url 'json' %}" type="button">JSON Link</a></th>
+    </tr>
+</table>
+</body>
+</html>
