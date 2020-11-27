@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+{% csrf_token %}
 <table>
     <tr>
         <th>Number</th>
@@ -13,30 +15,76 @@
         <th>Link</th>
     </tr>
     <tr>
-        <th>1</th>
-        <th>Text</th>
-        <th><a href="{% url 'text' %}" type="button">Text Link</a></th>
+        <td>1</td>
+        <td>Text</td>
+        <td><a href="{% url 'text' %}" type="button">Text Link</a></td>
     </tr>
     <tr>
-        <th>2</th>
-        <th>File</th>
-        <th><a href="{% url 'file' %}" type="button">File Link</a></th>
+        <td>2</td>
+        <td>File</td>
+        <td><a href="{% url 'file' %}" type="button">File Link</a></td>
     </tr>
     <tr>
-        <th>3</th>
-        <th>Redirect</th>
-        <th><a href="{% url 'redirect' %}" type="button">Redirect Link</a></th>
+        <td>3</td>
+        <td>Redirect</td>
+        <td><a href="{% url 'redirect' %}" type="button">Redirect Link</a></td>
     </tr>
     <tr>
-        <th>4</th>
-        <th>Not allowed</th>
-        <th><a href="{% url 'not_allowed' %}" type="button">Not allowed Link</a></th>
+        <td>4</td>
+        <td>Not allowed</td>
+        <td><a href="{% url 'not_allowed' %}" type="button">Not allowed Link</a></td>
     </tr>
     <tr>
-        <th>5</th>
-        <th>JSON</th>
-        <th><a href="{% url 'json' %}" type="button">JSON Link</a></th>
+        <td>5</td>
+        <td>JSON</td>
+        <td><a href="{% url 'json' %}" type="button">JSON Link</a></td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>POST</td>
+        <td>
+            {% csrf_token %}
+            <button onclick="send_post('POST')" type="button">POST Request</button>
+        </td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>GET</td>
+        <td>
+            {% csrf_token %}
+            <button onclick="send_post('GET')" type="button">GET Request</button>
+        </td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>DELETE</td>
+        <td>
+            {% csrf_token %}
+            <button onclick="send_post('DELETE')" type="button">DELETE Request</button>
+        </td>
     </tr>
 </table>
 </body>
+<script>
+    function send_post(requestString) {
+
+        let request_type = requestString;
+
+        $.ajax({
+            method: request_type,
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                this_is: request_type,
+            },
+            url: "{% url "class_view" %}",
+            success: function (result) {
+                alert(result)
+            },
+            error: function (result) {
+                console.log(result)
+            }
+        })
+        ;
+    }
+</script>
 </html>
