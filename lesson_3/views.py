@@ -2,6 +2,18 @@ from django.http import HttpResponse, FileResponse, HttpResponseRedirect, HttpRe
 from django.shortcuts import render
 from django.templatetags.static import static
 
+from django.views import View
+
+class MyView(View):
+
+    def get(self, request):
+        print(request.GET)
+        return HttpResponse("This is GET")
+
+    def post(self, request):
+        print(request.POST)
+        return HttpResponse("This is POST")
+
 def main(request):
     # return HttpResponse("<button>Some Button</button>")
     return render(request, "main.html")

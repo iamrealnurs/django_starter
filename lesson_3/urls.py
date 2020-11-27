@@ -8,4 +8,6 @@ urlpatterns = [
     path('main/redirect/', views.redirect, name='redirect'),
     path('main/not-allowed/', views.not_allowed, name='not_allowed'),
     path('main/json/', views.json, name='json'),
+
+    path('class-view/', views.MyView.as_view(), name='class_view'),
 ]
