@@ -10,8 +10,11 @@ def text(request):
     return HttpResponse("This is the text from backend to user interface")
 
 def file(request):
-    print(static('img/001.jpg'))
-    return FileResponse(open(static('img/001.jpg'), "rb+"))
+    # image = open(static('img/001.jpg'), 'rb+')
+    image = open('lesson_3/static/img/001.jpg', 'rb+')
+    print(image)
+    # print(static('img/001.jpg'))
+    return FileResponse(image)
 
 def redirect(request):
     return HttpResponseRedirect("https://www.google.com")
