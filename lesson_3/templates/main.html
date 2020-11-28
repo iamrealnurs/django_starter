@@ -75,10 +75,11 @@
             data: {
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 this_is: request_type,
+                type: "json",
             },
             url: "{% url "class_view" %}",
             success: function (result) {
-                alert(result)
+                console.log(result)
             },
             error: function (result) {
                 console.log(result)
